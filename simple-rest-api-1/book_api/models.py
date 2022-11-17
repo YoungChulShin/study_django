@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+# DB를 위한 모델
 class Book(models.Model): 
     title = models.CharField(max_length=100)
     number_of_pages = models.IntegerField()
