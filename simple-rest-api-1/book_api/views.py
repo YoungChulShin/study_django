@@ -15,3 +15,12 @@ def book_list(request):
     # return JsonResponse({
     #     'books': books_python
     # })
+
+@api_view(['POST'])
+def book_create(request):
+    serializer = BookSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    else:
+        return Response(serializer.errors)
