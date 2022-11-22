@@ -25,7 +25,10 @@ from rest_framework import serializers
 from book_api.models import Book
 from django.forms import ValidationError
 
+# # JsonSerialize를 위한 클래스
 class BookSerializer(serializers.ModelSerializer):
+    description = serializers.SerializerMethodField()
+    
     class Meta:
         model = Book
         fields = '__all__'
@@ -39,3 +42,6 @@ class BookSerializer(serializers.ModelSerializer):
         if data['number_of_pages'] > 2000 or data['quantity'] > 200:
             raise ValidationError('Too heavy')
         return data
+
+    def get_description(self, data):
+        return 'This book is called ' + data.title + 'and it is ' + str(data.number_of_pages) + ' long.'
