@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from book_api.views import BookCreate, BookList
+from book_api.views import BookCreate, BookList, BookDetail
 
 urlpatterns = [
     # path('', book_create),
@@ -8,4 +8,5 @@ urlpatterns = [
     # path('<int:pk>', book),
     path('', BookCreate.as_view()),
     path('list/', BookList.as_view()),
+    path('<int:pk>', BookDetail.as_view()),
 ]
